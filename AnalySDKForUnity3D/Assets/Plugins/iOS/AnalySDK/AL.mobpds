@@ -1,0 +1,6 @@
+{
+    "folders":     ["/Editor/SDK"],
+    "buildSettings": { 
+        "OTHER_LDFLAGS" : ["-lz", "-lstdc++"]
+    }
+}
