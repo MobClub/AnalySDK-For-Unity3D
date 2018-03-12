@@ -36,15 +36,16 @@ public class Demo : MonoBehaviour {
 
 		if (GUI.Button (new Rect ((Screen.width - btnWidth) / 2, btnTop, btnWidth, btnHeight),  "用户注册")) 
 		{
-			ALSDKUser user = new ALSDKUser ("YourUserId");
-
+			
+			ALSDKUser user = new ALSDKUser ("YourUserId","YourRegType","YourRegChannel", ALSDKUser.ActionType.Reg);
 			user.age = 18;
 			user.nickName = "UserNickName";
+			//...更多字段请参考该类文件
+
 			Hashtable customTable = new Hashtable ();
 			customTable.Add ("k1", "v1");
 			customTable.Add ("k2", "v2");
 			user.customProperties = customTable;
-			Hashtable hash = user.HashtableValue ();
 
 			AnalySDK.userRegist (user);
 
@@ -58,7 +59,7 @@ public class Demo : MonoBehaviour {
 			ALSDKUser user = new ALSDKUser ("YourUserId","YourLoginType","YourLoginChannel", ALSDKUser.ActionType.Login);
 			user.age = 18;
 			user.nickName = "UserNickName";
-			//...
+			//...更多字段请参考该类文件
 
 			AnalySDK.userLogin (user);
 		}
@@ -67,11 +68,10 @@ public class Demo : MonoBehaviour {
 
 		if (GUI.Button (new Rect ((Screen.width - btnWidth) / 2, btnTop, btnWidth, btnHeight),  "用户信息更新")) 
 		{
-			//ALSDKUser user = new ALSDKUser ("YourUserId");
-			ALSDKUser user = new ALSDKUser ("YourUserId","YourLoginType","YourLoginChannel", ALSDKUser.ActionType.Login);
+			ALSDKUser user = new ALSDKUser ("YourUserId");
 			user.age = 18;
 			user.nickName = "UserNickName";
-			//...
+			//...更多字段请参考该类文件
 
 			AnalySDK.userUpdate (user);
 		}
@@ -84,6 +84,7 @@ public class Demo : MonoBehaviour {
 			ALSDKRole role = new ALSDKRole ("YourUserId", "YourRoleId");
 			role.roLevel = 100;
 			role.roVip = "bigViP";
+			//...更多字段请参考该类文件
 
 			AnalySDK.roleCreate (role);
 
@@ -96,6 +97,7 @@ public class Demo : MonoBehaviour {
 			ALSDKRole role = new ALSDKRole ("YourUserId", "YourRoleId");
 			role.roLevel = 100;
 			role.roVip = "bigViP";
+			//...更多字段请参考该类文件
 
 			AnalySDK.roleLogin (role);
 		}
@@ -107,7 +109,7 @@ public class Demo : MonoBehaviour {
 			ALSDKRole role = new ALSDKRole ("YourUserId", "YourRoleId");
 			role.roLevel = 100;
 			role.roVip = "bigViP";
-
+			//...更多字段请参考该类文件
 			AnalySDK.roleUpdate (role);
 		}
 
@@ -117,11 +119,8 @@ public class Demo : MonoBehaviour {
 		{
 			ALSDKPayEvent payEvent = new ALSDKPayEvent ();
 			payEvent.payMoney = 10000;
-			payEvent.payDiscount = 0.99;
-
-			Hashtable custom = new Hashtable ();
-			custom.Add ("key1", "value1");
-			payEvent.customProperties = custom;
+			payEvent.payContent = "购买月卡";
+			//...更多字段请参考该类文件
 
 			AnalySDK.trackPayEvent (payEvent);
 
