@@ -166,12 +166,13 @@ extern "C" {
         
         ALSDKPayEvent *payEvent = [[ALSDKPayEvent alloc] init];
         
-        payEvent.payMoney = eventParams[@"_payMoney"];
+        payEvent.payMoney = [eventParams[@"_payMoney"] intValue];
         payEvent.payContent = eventParams[@"_payContent"];
         payEvent.payType = eventParams[@"_payType"];
         payEvent.payActivity = eventParams[@"_payActivity"];
         payEvent.payDiscount = eventParams[@"_payDiscount"];
         payEvent.discountReason = eventParams[@"_discountReason"];
+        
         
         NSString *customJsonStr = eventParams[@"customProperties"];
         if (customJsonStr.length > 0)
