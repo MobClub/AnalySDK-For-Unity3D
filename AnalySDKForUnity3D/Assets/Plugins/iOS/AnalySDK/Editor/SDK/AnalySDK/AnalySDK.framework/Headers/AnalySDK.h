@@ -100,4 +100,43 @@
  */
 + (void)identifyUser:(NSString *)userId userEntity:(ALSDKUser *)user __deprecated_msg("use userRegist/userLogin/userUpdate instead.");
 
+/**
+ *  结合方法 behaviorEnd:eventParams: 统计一个事件的持续时长
+ *  end事件查找最近一次start相同事件名记录持续时长
+ *  相同事件名更细分使用(behaviorStart:eventTag:eventParams:与behaviorEnd:eventTag:eventParams:)
+ *
+ *  @param eventName 事件名称
+ *  @param params    事件属性
+ */
++ (void)behaviorStart:(NSString *)eventName eventParams:(NSDictionary *)params;
+
+/**
+ *  结合方法  behaviorStart:eventParams: 统计一个事件的持续时长
+ *
+ *  @param eventName 事件名称
+ *  @param params    事件属性
+ */
++ (void)behaviorEnd:(NSString *)eventName eventParams:(NSDictionary *)params;
+
+
+/**
+ *  behaviorStart:eventParams: 的扩展
+ *  结合方法 behaviorEnd:eventTag:eventParams: 统计一个事件的持续时长
+ *
+ *  @param eventName 事件名称
+ *  @param eventTag  标识：区分相同事件名称，根据标识区分计算时间差，此字段只作用于客户端
+ *  @param params    事件属性
+ */
++ (void)behaviorStart:(NSString *)eventName eventTag:(NSString *)eventTag eventParams:(NSDictionary *)params;
+
+/**
+ *  behaviorEnd:eventParams: 的扩展
+ *  结合方法  behaviorStart:eventTag:eventParams: 统计一个事件的持续时长
+ *
+ *  @param eventName 事件名称
+ *  @param eventTag  标识：区分相同事件名称，根据标识区分计算时间差，此字段只作用于客户端
+ *  @param params    事件属性
+ */
++ (void)behaviorEnd:(NSString *)eventName eventTag:(NSString *)eventTag eventParams:(NSDictionary *)params;
+
 @end

@@ -38,6 +38,12 @@ namespace com.analysdk.unity3d
 		[DllImport("__Internal")]
 		private static extern void __iosAnalySDKTrackPayEvent (string eventsInfo);
 
+		[DllImport("__Internal")]
+		private static extern void __iosAnalySDKBehaviorStart (string eventName, string eventsInfo);
+
+		[DllImport("__Internal")]
+		private static extern void __iosAnalySDKBehaviorEnd (string eventName, string eventsInfo);
+
 
 		public override void trackEvent (string eventName, Hashtable customParams)
 		{
@@ -67,7 +73,6 @@ namespace com.analysdk.unity3d
 		{
 			Hashtable hashValue = newUser.HashtableValue();
 			String json = MiniJSON.jsonEncode(hashValue);
-			Debug.Log ("json :" + json);
 			__iosAnalySDKUserRegist (json);
 		}
 
@@ -89,8 +94,6 @@ namespace com.analysdk.unity3d
 		{
 			Hashtable hashValue = newRole.HashtableValue();
 			String json = MiniJSON.jsonEncode(hashValue);
-
-			Debug.Log ("json :" + json);
 			__iosAnalySDKRoleCreate (json);
 		}
 
@@ -106,6 +109,20 @@ namespace com.analysdk.unity3d
 			Hashtable hashValue = updateRole.HashtableValue();
 			String json = MiniJSON.jsonEncode(hashValue);
 			__iosAnalySDKRoleUpdate (json);
+		}
+
+		public override void behaviorStart (string eventName, Hashtable customParams)
+		{
+			String json = MiniJSON.jsonEncode(customParams);
+
+			__iosAnalySDKBehaviorStart (eventName, json);
+		}
+
+		public override void behaviorEnd (string eventName, Hashtable customParams)
+		{
+			String json = MiniJSON.jsonEncode(customParams);
+
+			__iosAnalySDKBehaviorEnd (eventName, json);
 		}
 
 

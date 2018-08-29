@@ -50,7 +50,7 @@ public class Demo : MonoBehaviour {
 			AnalySDK.userRegist (user);
 
 		}
-		btnTop += btnHeight + 20 * scale;
+		btnTop += btnHeight + 10 * scale;
 
 		if (GUI.Button(new Rect((Screen.width - btnWidth) / 2, btnTop, btnWidth, btnHeight), "用户登录"))
 		{
@@ -64,7 +64,7 @@ public class Demo : MonoBehaviour {
 			AnalySDK.userLogin (user);
 		}
 
-		btnTop += btnHeight + 20 * scale;
+		btnTop += btnHeight + 10 * scale;
 
 		if (GUI.Button (new Rect ((Screen.width - btnWidth) / 2, btnTop, btnWidth, btnHeight),  "用户信息更新")) 
 		{
@@ -76,7 +76,7 @@ public class Demo : MonoBehaviour {
 			AnalySDK.userUpdate (user);
 		}
 
-		btnTop += btnHeight + 20 * scale;
+		btnTop += btnHeight + 10 * scale;
 
 		if (GUI.Button (new Rect ((Screen.width - btnWidth) / 2, btnTop, btnWidth, btnHeight),  "创建角色")) 
 		{
@@ -90,7 +90,7 @@ public class Demo : MonoBehaviour {
 
 		}
 
-		btnTop += btnHeight + 20 * scale;
+		btnTop += btnHeight + 10 * scale;
 
 		if (GUI.Button (new Rect ((Screen.width - btnWidth) / 2, btnTop, btnWidth, btnHeight),  "角色登录")) 
 		{
@@ -102,7 +102,7 @@ public class Demo : MonoBehaviour {
 			AnalySDK.roleLogin (role);
 		}
 
-		btnTop += btnHeight + 20 * scale;
+		btnTop += btnHeight + 10 * scale;
 
 		if (GUI.Button (new Rect ((Screen.width - btnWidth) / 2, btnTop, btnWidth, btnHeight),  "角色信息更新")) 
 		{
@@ -113,7 +113,7 @@ public class Demo : MonoBehaviour {
 			AnalySDK.roleUpdate (role);
 		}
 
-		btnTop += btnHeight + 20 * scale;
+		btnTop += btnHeight + 10 * scale;
 
 		if (GUI.Button (new Rect ((Screen.width - btnWidth) / 2, btnTop, btnWidth, btnHeight),  "支付事件")) 
 		{
@@ -126,7 +126,7 @@ public class Demo : MonoBehaviour {
 
 		}
 
-		btnTop += btnHeight + 20 * scale;
+		btnTop += btnHeight + 10 * scale;
 
 		if (GUI.Button (new Rect ((Screen.width - btnWidth) / 2, btnTop, btnWidth, btnHeight),  "任意自定义事件")) 
 		{
@@ -135,6 +135,30 @@ public class Demo : MonoBehaviour {
 			custom.Add ("key1", "value1");
 			custom.Add ("key2", "value2");
 			AnalySDK.trackEvent ("CustomEvent", custom);
+
+		}
+
+		btnTop += btnHeight + 10 * scale;
+
+		if (GUI.Button (new Rect ((Screen.width - btnWidth) / 2, btnTop, btnWidth, btnHeight),  "开始统计行为")) 
+		{
+
+			Hashtable custom = new Hashtable ();
+			custom.Add ("key1", "value1");
+			custom.Add ("key2", "value2");
+			AnalySDK.behaviorStart ("aEventName", custom);//对于同一个行为的时长统计,标识参数请保持与behaviorEnd一致
+
+		}
+
+		btnTop += btnHeight + 10 * scale;
+
+		if (GUI.Button (new Rect ((Screen.width - btnWidth) / 2, btnTop, btnWidth, btnHeight),  "结束统计行为")) 
+		{
+
+			Hashtable custom = new Hashtable ();
+			custom.Add ("key1", "value1");
+			custom.Add ("key2", "value2");
+			AnalySDK.behaviorEnd ("aEventName", custom); //对于同一个行为的时长统计,标识参数请保持与behaviorStart一致
 
 		}
 

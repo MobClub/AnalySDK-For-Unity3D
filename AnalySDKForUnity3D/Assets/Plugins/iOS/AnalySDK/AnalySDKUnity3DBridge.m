@@ -32,6 +32,9 @@ extern "C" {
     
     extern void __iosAnalySDKTrackPayEvent (void *eventsInfo);
 
+    extern void __iosAnalySDKBehaviorStart (void *eventName, void *eventsInfo);
+    
+    extern void __iosAnalySDKBehaviorEnd (void *eventName, void *eventsInfo);
     
     ALSDKUser *__parseUserHashtable (void *eventsInfo);
     ALSDKRole *__parseRoleHashtable (void *eventsInfo);
@@ -182,7 +185,25 @@ extern "C" {
         }
         return payEvent;
     }
-
+    
+    void __iosAnalySDKBehaviorStart (void *eventName, void *eventsInfo)
+    {
+        NSString *event = [NSString stringWithCString:eventName encoding:NSUTF8StringEncoding];
+        NSString *theParamsStr = [NSString stringWithCString:eventsInfo encoding:NSUTF8StringEncoding];
+        NSDictionary *eventParams = [MOBFJson objectFromJSONString:theParamsStr];
+        
+        [AnalySDK behaviorStart:event eventParams:eventParams];
+    }
+    
+    void __iosAnalySDKBehaviorEnd (void *eventName, void *eventsInfo)
+    {
+        NSString *event = [NSString stringWithCString:eventName encoding:NSUTF8StringEncoding];
+        NSString *theParamsStr = [NSString stringWithCString:eventsInfo encoding:NSUTF8StringEncoding];
+        NSDictionary *eventParams = [MOBFJson objectFromJSONString:theParamsStr];
+        
+        [AnalySDK behaviorEnd:event eventParams:eventParams];
+    }
+    
 #if defined (__cplusplus)
 }
 #endif

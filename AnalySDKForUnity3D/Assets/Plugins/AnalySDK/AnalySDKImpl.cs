@@ -50,6 +50,14 @@ namespace com.analysdk.unity3d
 
 		}
 
+		public virtual void behaviorStart (string eventName, Hashtable customParams)
+		{
+		}
+
+		public virtual void behaviorEnd (string eventName, Hashtable customParams)
+		{
+		}
+
 	}
 }
 
