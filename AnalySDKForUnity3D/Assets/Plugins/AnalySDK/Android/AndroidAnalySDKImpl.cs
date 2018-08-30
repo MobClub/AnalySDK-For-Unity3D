@@ -105,6 +105,26 @@ namespace com.analysdk.unity3d
 
 		}
 
+		public override void behaviorStart (string eventName, Hashtable customParams)
+		{
+
+			androidJavaClass = new AndroidJavaClass ("com/mob/game/CoCosAPI");
+			String json = MiniJSONBase.jsonEncode(customParams);
+			if (androidJavaClass != null) {
+				androidJavaClass.CallStatic ("behaviorStart", eventName,json);
+			}
+		}
+
+		public override void behaviorEnd (string eventName, Hashtable customParams)
+		{
+
+			androidJavaClass = new AndroidJavaClass ("com/mob/game/CoCosAPI");
+			String json = MiniJSONBase.jsonEncode(customParams);
+			if (androidJavaClass != null) {
+				androidJavaClass.CallStatic ("behaviorEnd", eventName,json);
+			}
+		}
+
 	}
 	#endif
 }
