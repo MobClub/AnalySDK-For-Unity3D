@@ -4,7 +4,7 @@
 **当前支持的 AnalySDK 版本**
 
 - iOS v1.1.2
-- Android v1.1.0
+- Android v1.1.1
 
 **集成文档**
 
