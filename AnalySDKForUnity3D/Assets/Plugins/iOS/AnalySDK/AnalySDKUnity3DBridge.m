@@ -42,11 +42,24 @@ extern "C" {
     
     void __iosAnalySDKtrackEvent (void *eventName, void *eventsInfo)
     {
-        NSString *event = [NSString stringWithCString:eventName encoding:NSUTF8StringEncoding];
-        NSString *theParamsStr = [NSString stringWithCString:eventsInfo encoding:NSUTF8StringEncoding];
-        NSDictionary *eventParams = [MOBFJson objectFromJSONString:theParamsStr];
+        if (eventName != NULL)
+        {
+            NSString *event = [NSString stringWithCString:eventName encoding:NSUTF8StringEncoding];
+            NSString *theParamsStr = nil;
+            if (eventsInfo != NULL)
+            {
+                theParamsStr = [NSString stringWithCString:eventsInfo encoding:NSUTF8StringEncoding];
+            }
+
+            NSDictionary *eventParams = [MOBFJson objectFromJSONString:theParamsStr];
+            
+            [AnalySDK trackEvent:event eventParams:eventParams];
+        }
+        else
+        {
+            NSLog(@"Error:Invalid event name!");
+        }
         
-        [AnalySDK trackEvent:event eventParams:eventParams];
     }
     
     void __iosAnalySDKSetLocation (float latitude, float longitude)
